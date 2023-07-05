@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Stock Market</title>
+</head>
+
+<body>
+    <div class="top-div">
+    <nav class="nav-container">
+        <div class="logo-name">
+            <div class="img-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/1753/1753732.png" alt="logo-image">
+            </div>
+            <h1>Stock Market Dashboard</h1>
+        </div>
+        <ul class="nav-anchors">
+            <li>
+                <p class="li-content" id="light-dark">THEME</p>
+            </li>
+            <li>
+                <a href="mailto:aswathbabu2000@gmail.com" class="li-content">CONTACT ME</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="input-section-container form-submit-transform">
+        <div class="customer-input-form">
+            <form>
+                <input type="text" id="input-symbol" placeholder="Enter a Symbol..." maxlength="20" autocomplete="off" required>
+                    <select id="input-time-frame" required>
+                        <option value="select" id="selecttime" disabled>--SELECT TIME FRAME--</option>
+                        <option value="INTRADAY">Intraday</option>
+                        <option value="DAILY" disabled>Daily(Only available for Premium Users)</option>
+                        <option value="WEEKLY">Weekly</option>
+                        <option value="MONTHLY">Monthly</option>
+                    </select>
+                <div id="form-submit-btn">
+                <button type="submit" class="search">Search</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <div class="watchlist-header v-none">
+        <h2>Your Watchlist</h2>
+    </div>
+    <div class="loader-container">
+    </div>
+    <div class="watchlist">
+        <ul class="watchlist-unordered"></ul>
+    </div>
+    <div class="floating-modal v-none">
+        <div class="float-container">
+            <table>
+                <tr id="row1">
+                    <td id="row1data1"></td>
+                    <td id="row1data2" class="open-column">OPEN</td>
+                    <td id="row1data3" class="high-column">HIGH</td>
+                    <td id="row1data4" class="low-column">LOW</td>
+                    <td id="row1data5" class="close-column">CLOSE</td>
+                    <td id="row1data6" class="volume-column">VOLUME</td>
+                </tr>
+                <tr id="row2">
+                    <td id="row2data1"></td>
+                    <td id="row2data2" class="open-column"></td>
+                    <td id="row2data3" class="high-column"></td>
+                    <td id="row2data4" class="low-column"></td>
+                    <td id="row2data5" class="close-column"></td>
+                    <td id="row2data6" class="volume-column"></td>
+                </tr>
+                <tr id="row3">
+                    <td id="row3data1"></td>
+                    <td id="row3data2" class="open-column"></td>
+                    <td id="row3data3" class="high-column"></td>
+                    <td id="row3data4" class="low-column"></td>
+                    <td id="row3data5" class="close-column"></td>
+                    <td id="row3data6" class="volume-column"></td>
+                </tr>
+                <tr id="row4">
+                    <td id="row4data1"></td>
+                    <td id="row4data2" class="open-column"></td>
+                    <td id="row4data3" class="high-column"></td>
+                    <td id="row4data4" class="low-column"></td>
+                    <td id="row4data5" class="close-column"></td>
+                    <td id="row4data6" class="volume-column"></td>
+                </tr>
+                <tr id="row5">
+                    <td id="row5data1"></td>
+                    <td id="row5data2" class="open-column"></td>
+                    <td id="row5data3" class="high-column"></td>
+                    <td id="row5data4" class="low-column"></td>
+                    <td id="row5data5" class="close-column"></td>
+                    <td id="row5data6" class="volume-column"></td>
+                </tr>
+                <tr id="row6">
+                    <td id="row6data1"></td>
+                    <td id="row6data2" class="open-column"></td>
+                    <td id="row6data3" class="high-column"></td>
+                    <td id="row6data4" class="low-column"></td>
+                    <td id="row6data5" class="close-column"></td>
+                    <td id="row6data6" class="volume-column"></td>
+                </tr>
+            </table>
+            <button id="modalHide">&#10060;</button>
+        </div>
+    </div>
+    <!-- <footer class="footer">
+        <p>@Copyrights reserved</p>
+    </footer> -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
