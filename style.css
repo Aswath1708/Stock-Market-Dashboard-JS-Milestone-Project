@@ -15,6 +15,7 @@ nav{
     display: flex;
     justify-content: space-between;
     padding: 15px;
+    background-color: rgba(0, 0, 0, 0.505);
 }
 .logo-name{
     display: flex;
@@ -31,7 +32,7 @@ nav{
 .logo-name img{
     width: 100%;
 }
-nav ul{
+nav>ul{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -47,21 +48,24 @@ nav ul{
     border-radius: 5px;
 }
 .li-content:hover{
-    background-color: greenyellow;
+    background-color: gold;
     color: black;
+    outline: 2px solid black;
 }
 
 .watchlist-header h2{
     text-align: center;
     padding: 10px;
 }
-.customer-input-form{
+.input-section-container{
     display: flex;
     justify-content: center;
-    padding: 30px 0;
+    margin: 25vh 0;
 }
 .top-div{
-    background: linear-gradient(45deg, red, blue);
+    background-image: url('https://tradebrains.in/wp-content/uploads/2021/12/Minimum-Amount-For-Trading-in-india-2023-Cover-Image-1080x675.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
 }
 form{
@@ -85,13 +89,14 @@ select,.search{
     justify-content: center;
 }
 .search{
-    background-color: rgb(1, 150, 1);
+    background-color: gold;
     font-weight: bolder;
     width: 20vw;
-    color: white;
+    color: black;
 }
 .search:hover{
-    background-color: rgb(0, 98, 0);
+    background-color: yellow;
+    outline: 2px solid black;
 }
 option{
     text-align: center;
@@ -191,33 +196,45 @@ td{
     align-self: flex-start;
     background-color: transparent;
 }
-/* .footer{
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    top: 94vh;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: black;
+#footer{
     color: white;
-} */
+    background-color: black;
+}
+.footer{
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+}
+.footer a{
+    text-decoration: none;
+}
+.upper-footer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.upper-footer-column-two{
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+}
+.upper-footer-column-three{
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    justify-content: center;
+}
+.social-media-container img{
+    width: 20px;
+    height: 20px;
+}
 .v-none{
     display: none;
-}
-.form-submit-transform{
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* background-color: blueviolet; */
 }
 .light-dark{
     color: white;
     background-color: black;
 }
-.light-dark-btn{
-    color: black;
-    background-color: greenyellow;
+.light-dark-nav{
+    color: white;
+    background-color: black;
+    height: 100vh;
 }
 .light-dark-border{
     border-radius: 15px;
@@ -238,6 +255,10 @@ td{
     .listDeleteButton{
         width: 100%;
         padding: 2px 0;
+    }
+    td{
+        font-size: xx-small;
+        padding: 3px;
     }
 }
 @media screen and (max-width:930px){

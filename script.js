@@ -11,7 +11,8 @@ let topDiv = document.querySelector('.top-div')
 let navBar = document.querySelector('nav');
 let inputContainerDiv=document.querySelector('.input-section-container');
 let searchBtn = document.querySelector('button.search');
-let themebtn=document.querySelector('#light-dark')
+let themebtn=document.querySelector('#light-dark');
+let footeryear = document.querySelector('#footer-year');
 
 //function to create elements and add attributes
 const creatingAndAddingAttributes = (tagName, contentText, className, idName) => {
@@ -33,6 +34,11 @@ const creatingAndAddingAttributes = (tagName, contentText, className, idName) =>
 //creating loading symbol
 const loadingSymbol = creatingAndAddingAttributes('p', 'Loading...', undefined, 'loadingSymbol');
 const loadingSymbolCSS = creatingAndAddingAttributes('span',undefined,undefined,'loadingcircleicon');
+
+//updating year in footer by date object
+const fullDate=new Date();
+const currentYear=fullDate.getFullYear();
+footeryear.textContent=currentYear;
 
 //fetching api
 const apiCall = (symbolInput, timeInput) => {
@@ -61,15 +67,18 @@ const apiCall = (symbolInput, timeInput) => {
             }
             console.log(timeValue);
             const liStockValue = timeValue[`${Object.keys(timeValue)[0]}`]['1. open'];
+
+            //removing lodaing symbol once the data is fetched
             loadingSymbol.remove();
             loadingSymbolCSS.remove();
             loader.style.padding='0px';
+
             createListItems(liStockValue, timeValue);
         })
 
         //Handling Errors in case of Invalid Symbols entered
         .catch(()=>{
-            alert('Unable to fetch data. Invalid Symbol!');
+            alert('Unable to fetch data. Invalid Symbol or More frequent API calls!');
             loadingSymbol.remove();
             loadingSymbolCSS.remove();
             loader.style.padding='0px';
@@ -77,7 +86,6 @@ const apiCall = (symbolInput, timeInput) => {
             if(list.childNodes.length===0){
                 listHeader.classList.add('v-none');
                 topDiv.style.height='100vh';
-                inputContainerDiv.classList.add('form-submit-transform');
             }
         })
 }
@@ -103,8 +111,9 @@ const createListItems = (liStockValue, timeValue) => {
         if (list.childNodes.length === 0) {
             listHeader.classList.add('v-none');
             topDiv.style.height='100vh';
-            // listContainer.style.height='0px';
-            inputContainerDiv.classList.add('form-submit-transform');
+            // inputContainerDiv.classList.add('form-submit-transform');
+            inputContainerDiv.style.margin='25vh 0';
+            listContainer.style.height='auto';
         }
     })
 
@@ -140,19 +149,19 @@ modalHide.addEventListener('click', () => {
 inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
     topDiv.style.height='auto';
-    inputContainerDiv.classList.remove('form-submit-transform')
-    // listContainer.style.minHeight='40vh';
+    // inputContainerDiv.classList.remove('form-submit-transform')
+    inputContainerDiv.style.margin='auto';
+    listContainer.style.height='50vh';
     apiCall(symbolInput, timeInput);
 })
 
 //switching styles based on theme button
 themebtn.addEventListener('click',()=>{
-    let theme=(topDiv.className==='light-dark')?'top-div':'light-dark';
+    let theme=(topDiv.className==='light-dark-nav')?'top-div':'light-dark-nav';
     topDiv.className=theme;
     document.body.classList.toggle('light-dark');
     navBar.classList.toggle('nav-dark-theme');
     inputForm.classList.toggle('light-dark-border');
-    searchBtn.classList.toggle('light-dark-btn');
 })
 
 //function to add timeframe data to the modal table
