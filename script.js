@@ -86,6 +86,8 @@ const apiCall = (symbolInput, timeInput) => {
             if(list.childNodes.length===0){
                 listHeader.classList.add('v-none');
                 topDiv.style.height='100vh';
+                inputContainerDiv.style.margin='25vh 0';
+                listContainer.style.height='auto';
             }
         })
 }
@@ -111,7 +113,6 @@ const createListItems = (liStockValue, timeValue) => {
         if (list.childNodes.length === 0) {
             listHeader.classList.add('v-none');
             topDiv.style.height='100vh';
-            // inputContainerDiv.classList.add('form-submit-transform');
             inputContainerDiv.style.margin='25vh 0';
             listContainer.style.height='auto';
         }
@@ -149,7 +150,6 @@ modalHide.addEventListener('click', () => {
 inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
     topDiv.style.height='auto';
-    // inputContainerDiv.classList.remove('form-submit-transform')
     inputContainerDiv.style.margin='auto';
     listContainer.style.height='50vh';
     apiCall(symbolInput, timeInput);
