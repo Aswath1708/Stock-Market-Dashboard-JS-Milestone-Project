@@ -11,8 +11,15 @@ let topDiv = document.querySelector('.top-div')
 let navBar = document.querySelector('nav');
 let inputContainerDiv=document.querySelector('.input-section-container');
 let searchBtn = document.querySelector('button.search');
-let themebtn=document.querySelector('#light-dark');
+// let themebtn=document.querySelector('#light-dark');
 let footeryear = document.querySelector('#footer-year');
+let dateShowingTag = document.querySelector('.date-showing-nav-p');
+
+//Updating the date and time regularly
+setInterval(()=>{
+    let curr_Date = new Date();
+    dateShowingTag.textContent=`${curr_Date.toDateString()} ${curr_Date.toLocaleTimeString()}`;
+},1000);
 
 //function to create elements and add attributes
 const creatingAndAddingAttributes = (tagName, contentText, className, idName) => {
@@ -36,8 +43,7 @@ const loadingSymbol = creatingAndAddingAttributes('p', 'Loading...', undefined, 
 const loadingSymbolCSS = creatingAndAddingAttributes('span',undefined,undefined,'loadingcircleicon');
 
 //updating year in footer by date object
-const fullDate=new Date();
-const currentYear=fullDate.getFullYear();
+const currentYear=new Date().getFullYear();
 footeryear.textContent=currentYear;
 
 //fetching api
@@ -87,7 +93,8 @@ const apiCall = (symbolInput, timeInput) => {
                 listHeader.classList.add('v-none');
                 topDiv.style.height='100vh';
                 inputContainerDiv.style.margin='25vh 0';
-                listContainer.style.height='auto';
+                listContainer.style.minHeight='auto';
+                listContainer.style.padding='0';
             }
         })
 }
@@ -97,11 +104,11 @@ const createListItems = (liStockValue, timeValue) => {
     const li = creatingAndAddingAttributes('li', undefined, 'watchlist-item', undefined);
 
     const liSymbolName = creatingAndAddingAttributes('p', `${symbolInput.value.toUpperCase()}`, undefined, 'formSymbol');
-    const liStockPoints = creatingAndAddingAttributes('p', `${liStockValue}`, undefined, undefined);
+    const liStockPoints = creatingAndAddingAttributes('p', `${liStockValue}`, undefined, 'liStockOpenPoints');
     const liTimeValue = creatingAndAddingAttributes('p', `${timeInput.value}`, undefined, 'formTimeFrame');
 
     const liDeleteBtn = creatingAndAddingAttributes('button', undefined, 'listDeleteButton', undefined);
-    liDeleteBtn.innerHTML = `&#10060;`;
+    liDeleteBtn.innerHTML = `&#10006;`;
 
     li.append(liSymbolName, liStockPoints, liTimeValue, liDeleteBtn);
 
@@ -114,7 +121,8 @@ const createListItems = (liStockValue, timeValue) => {
             listHeader.classList.add('v-none');
             topDiv.style.height='100vh';
             inputContainerDiv.style.margin='25vh 0';
-            listContainer.style.height='auto';
+            listContainer.style.minHeight='auto';
+            listContainer.style.padding='0';
         }
     })
 
@@ -128,10 +136,6 @@ const createListItems = (liStockValue, timeValue) => {
         //adding the values of top 5 stock data of the selected time frame to the table
         addingDatatoTable(timeValue);
     })
-    //styling the list item according to the theme
-    if(inputForm.classList.contains('light-dark')){
-        li.className='light-dark-border';
-    }
 
     //adding the list item to the watchlist
     list.appendChild(li);
@@ -151,17 +155,9 @@ inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
     topDiv.style.height='auto';
     inputContainerDiv.style.margin='auto';
-    listContainer.style.height='50vh';
+    listContainer.style.minHeight='55vh';
+    listContainer.style.padding='1rem 0';
     apiCall(symbolInput, timeInput);
-})
-
-//switching styles based on theme button
-themebtn.addEventListener('click',()=>{
-    let theme=(topDiv.className==='light-dark-nav')?'top-div':'light-dark-nav';
-    topDiv.className=theme;
-    document.body.classList.toggle('light-dark');
-    navBar.classList.toggle('nav-dark-theme');
-    inputForm.classList.toggle('light-dark-border');
 })
 
 //function to add timeframe data to the modal table
